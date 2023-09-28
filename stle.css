@@ -1,0 +1,195 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3 {
+    color: #333;
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 10px;
+}
+
+
+.tutorial-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px 25%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+}
+
+
+.code-container {
+    border-radius: 59px;
+    background: #e0e0e0;
+    box-shadow: 30px 30px 59px #bcbcbc,
+        -30px -30px 59px #ffffff;
+    /* background-color: #f5f5f5; */
+    padding: 30px;
+    margin: 30px 0;
+}
+
+
+.code-preview {
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background-color: #fff;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.button-copy {
+    border: 2px solid #3c73ff;
+    background-color: #3c73ff;
+    border-radius: 20px;
+    color: #fff;
+    transition: .3s;
+    position: absolute;
+    right: 28%;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.cpbtn {
+    margin-top: -10px;
+}
+
+
+.button-copy:hover {
+    box-shadow: 8px 8px #99bdff;
+    transition: .3s;
+}
+
+.button-copy.copied {
+    background-color: #4CAF50;
+}
+
+.button-copy.copied:hover {
+    box-shadow: none;
+}
+
+.popup {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50;
+    color: #fff;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+    opacity: 1;
+    transition: .3s;
+    z-index: 1;
+}
+
+
+
+pre {
+    margin: 0;
+    color: midnightblue;
+}
+
+
+ul {
+    list-style: disc;
+    padding-left: 20px;
+    color: #555;
+}
+
+p {
+    line-height: 1.6;
+    font-size: 16px;
+    color: #555;
+}
+
+a {
+    color: #0077cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+    text-align: center;
+}
+
+.social-list {
+    border-radius: 59px;
+    background: #e0e0e0;
+    box-shadow: 30px 30px 59px #bcbcbc,
+        -30px -30px 59px #ffffff;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.social-list li {
+    flex: 1;
+    text-align: center;
+    margin: 10px;
+}
+
+.social-list a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+
+.social-list i {
+    font-size: 36px;
+    height: 60px;
+    width: 60px;
+    line-height: 60px;
+    background-color: #fff;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Social Media Icons Hover Effect */
+.social-list i:hover {
+    background-color: #0078d4;
+    color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+    .tutorial-container {
+        padding: 20px 10px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .code-container {
+        padding: 8px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .code-container {
+        padding: 6px;
+    }
+
+    .cpbtn {
+        right: 26%;
+    }
+
+    .button-copy {
+        right: 36%;
+    }
+}
