@@ -1,0 +1,80 @@
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #f4f4f4;
+          margin: 0;
+          padding: 0;
+        }
+
+        .container {
+          max-width: 600px;
+          margin: 4% auto;
+          padding: 20px;
+          background-color: #ffffff;
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+          text-align: center;
+          color: #333;
+          margin-bottom: 20px;
+        }
+
+        /* UserProfile component styles */
+        .user-profile {
+          text-align: center;
+          margin: 40px auto;
+          max-width: 300px;
+          padding: 20px;
+          background-color: #fff;
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .user-profile h2 {
+          font-size: 24px;
+          margin-bottom: 10px;
+        }
+
+        .user-profile img {
+          border-radius: 50%;
+          margin-bottom: 20px;
+          max-width: 150px;
+        }
+
+        .user-profile p {
+          font-size: 16px;
+          margin: 5px 0;
+        }
+
+        /* Search component styles */
+        .search-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-top: 40px;
+          /* Increased top margin for more spacing */
+        }
+
+        .search-input {
+          padding: 10px;
+          font-size: 16px;
+          border: 2px solid #007bff;
+          /* Added border and changed border color */
+          border-radius: 4px;
+          margin-right: 10px;
+          width: 300px;
+          /* Increased input width for better visibility */
+        }
+
+        .search-button {
+          background-color: #007bff;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          padding: 10px 20px;
+          cursor: pointer;
+          font-size: 16px;
+        }
+
+        .search-button:hover {
+          background-color: #0056b3;
+        }

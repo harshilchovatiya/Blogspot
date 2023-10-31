@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="GitHub User Search by Harshil Chovatiya - Find GitHub users and display their profiles.">
+    <meta name="author" content="Harshil Chovatiya">
+    <title>GitHub User Search by Harshil Chovatiya</title>
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="GitHub, user search, profile">
+    <link rel="shortcut icon" href="https://harshilchovatiya.github.io/images/android-chrome-192x192.png"
+        type="image/png">
+    <link rel="canonical" href="https://harshilchovatiya.github.io/Blogspot/GithubUserSearch">
+    <meta property="og:title" content="GitHub User Search by Harshil Chovatiya">
+    <meta property="og:description" content="Find GitHub users and display their profiles.">
+    <meta property="og:image"
+        content="https://user-images.githubusercontent.com/131672641/269209161-5ffd72cb-e8be-4bc7-a19b-3b3423c02765.png">
+    <meta property="og:url" content="https://harshilchovatiya.github.io/Blogspot/GithubUserSearch">
+    <meta property="og:site_name" content="GitHub User Search">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <h1>GitHub User Search</h1>
+        <div class="search-container">
+            <input class="search-input" type="text" placeholder="Enter username Ex.(harshilchovatiya)">
+            <button class="search-button" onclick="handleSearch()">Search</button>
+        </div>
+        <div class="user-profile">
+        </div>
+
+    </div>
+    <script>
+        window.onload = () => {
+            fetchGitHubUser("harshilchovatiya");
+        };
+        function fetchGitHubUser(username) {
+            fetch(`https://api.github.com/users/${username}`)
+                .then((response) => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Network response was not ok');
+                    }
+                })
+                .then((userData) => {
+                    renderUserProfile(userData);
+
+                })
+                .catch((error) => {
+                    console.error('Error fetching GitHub user:', error);
+                });
+        }
+
+        function handleSearch() {
+            const username = document.querySelector('.search-input').value;
+            fetchGitHubUser(username);
+        }
+
+        function renderUserProfile(user) {
+            const userProfileContainer = document.querySelector('.user-profile');
+            userProfileContainer.innerHTML = ''; // Clear previous content
+
+            if (user) {
+                const h2 = document.createElement('h2');
+                h2.textContent = user.name;
+
+                const img = document.createElement('img');
+                img.src = user.avatar_url;
+                img.alt = user.login;
+                img.width = 150;
+
+                const username = document.createElement('p');
+                username.textContent = `Username: ${user.login}`;
+
+                const followers = document.createElement('p');
+                followers.textContent = `Followers: ${user.followers}`;
+
+                const following = document.createElement('p');
+                following.textContent = `Following: ${user.following}`;
+
+                const publicRepos = document.createElement('p');
+                publicRepos.textContent = `Public Repos: ${user.public_repos}`;
+
+                userProfileContainer.appendChild(h2);
+                userProfileContainer.appendChild(img);
+                userProfileContainer.appendChild(username);
+                userProfileContainer.appendChild(followers);
+                userProfileContainer.appendChild(following);
+                userProfileContainer.appendChild(publicRepos);
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
