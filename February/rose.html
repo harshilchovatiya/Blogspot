@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rose Day Decoration</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #f5f5f5;
+            font-family: 'Arial', sans-serif;
+        }
+
+        #rose {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background-color: #ff6961;
+            border-radius: 50%;
+            animation: rotate 10s infinite linear;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        #container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        #username-form {
+            max-width: 400px;
+            margin: auto;
+        }
+
+        #username {
+            border-radius: 20px;
+        }
+
+        #set-username-btn {
+            border-radius: 20px;
+        }
+
+        #permalink,
+        #current-username {
+            margin-top: 20px;
+        }
+
+        label {
+            color: #6c757d;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        #add-name {
+            cursor: pointer;
+            color: #007bff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1>Have Nice Day!</h1>
+        <div id="name-container">
+            <form id="username-form" class="form-inline">
+                <div class="form-group mx-sm-3 mb-2">
+                    <label for="username">Enter Your Name:</label>
+                    <input type="text" class="form-control" id="username" placeholder="Your Name" required>
+                </div>
+                <button type="button" class="btn btn-primary mb-2" id="set-username-btn"
+                    onclick="generatePermalink()">Set Username</button>
+            </form>
+            <div id="permalink"></div>
+            <div id="current-username"></div>
+            <button type="button" class="btn btn-success mb-2" id="share-btn" onclick="shareLink()">Share</button>
+        </div>
+        <div id="add-name" onclick="toggleNameInput()">Add your name</div>
+    </div>
+
+    <script>
+        function generatePermalink() {
+            var username = document.getElementById('username').value;
+            var permalink = document.getElementById('permalink');
+            var currentURL = window.location.href;
+            var newURL = currentURL + '#' + username;
+            permalink.innerHTML = 'Your Permalink: <a href="' + newURL + '">' + newURL + '</a>';
+            window.location.hash = username;
+
+            // Hide only the input field after setting the username
+            document.getElementById('username-form').style.display = 'none';
+            getUsernameFromURL();
+        }
+
+        async function shareLink() {
+            var username = document.getElementById('username').value;
+            var currentURL = window.location.href;
+            var shareURL = currentURL + '#' + username;
+
+            try {
+                if (navigator.share) {
+                    await navigator.share({
+                        title: 'Share your Rose Day Link',
+                        text: 'Check out my Rose Day link!',
+                        url: shareURL
+                    });
+                } else {
+                    // Fallback for browsers that do not support Web Share API
+                    throw new Error('Web Share API not supported');
+                }
+            } catch (error) {
+                console.error('Error sharing:', error);
+
+                // Provide more information in the alert
+                window.alert('Error sharing. You can manually copy the link:\n\n' + shareURL);
+            }
+        }
+
+        function getUsernameFromURL() {
+            var currentHash = window.location.hash;
+            var username = currentHash.substring(1);
+            var usernameElement = document.getElementById('current-username');
+            usernameElement.innerHTML = 'Username from URL: ' + username;
+
+            // Check if username is already present in the URL, then hide the input field
+            if (username) {
+                document.getElementById('username-form').style.display = 'none';
+            }
+        }
+
+        function toggleNameInput() {
+            var usernameForm = document.getElementById('username-form');
+            var addNameButton = document.getElementById('add-name');
+
+            // Toggle the visibility of the input field
+            if (usernameForm.style.display === 'none' || !usernameForm.style.display) {
+                usernameForm.style.display = 'block';
+                addNameButton.innerHTML = 'Hide your name';
+            } else {
+                usernameForm.style.display = 'none';
+                addNameButton.innerHTML = 'Add your name';
+            }
+        }
+
+        window.onload = getUsernameFromURL;
+    </script>
+</body>
+
+</html>
