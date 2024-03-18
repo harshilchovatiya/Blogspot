@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Quiz App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container" id="start-screen">
+        <h1>Welcome to the JavaScript Quiz!</h1>
+        <input type="text" id="username" placeholder="Enter your name">
+        <button onclick="startQuiz()">Start Quiz</button>
+    </div>
+
+    <div class="container" id="quiz" style="display: none;">
+        <div id="question-container">
+            <p id="question"></p>
+        </div>
+        <div id="options-container">
+        </div>
+        <p id="score">Score: <span id="score-value">0</span></p>
+    </div>
+
+    <div class="container" id="end-screen" style="display: none;">
+        <h2>Quiz Complete!</h2>
+        <p>Your score: <span id="final-score">0</span></p>
+        <button onclick="restartQuiz()">Restart Quiz</button>
+    </div>
+
+    <script src="quiz.js"></script>
+</body>
+
+</html>
